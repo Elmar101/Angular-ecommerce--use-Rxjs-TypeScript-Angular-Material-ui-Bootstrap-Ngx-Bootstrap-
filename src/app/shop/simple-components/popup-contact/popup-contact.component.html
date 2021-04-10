@@ -1,0 +1,44 @@
+<mat-card-header>
+  <mat-toolbar class="toolbar">
+    <mat-card-title>Mənə zəng et</mat-card-title>
+  </mat-toolbar>
+</mat-card-header>
+<mat-card-content>
+  <div class="container">
+    <form *ngIf="!contactSent" #form="ngForm" (ngSubmit)="submitContact(form)">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Ad</label>
+            <input type="text"  name="name" #name="ngModel" class="form-control"
+            [(ngModel)]="contactService.contact.firstName">
+          </div>
+          <div class="col-md-6">
+            <label>Soyad</label>
+            <input type="text"  name="lname" #lname="ngModel"  class="form-control"
+            [(ngModel)]="contactService.contact.lastName">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>Telefon nömrəniz*</label>
+            <input type="text" name="number" #number="ngModel"  class="form-control"
+            [(ngModel)]="contactService.contact.phone">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+          <button type="submit" class="btn btn-danger mt-3" style="width: 100%;">
+              Göndər
+          </button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</mat-card-content>
+
+
+

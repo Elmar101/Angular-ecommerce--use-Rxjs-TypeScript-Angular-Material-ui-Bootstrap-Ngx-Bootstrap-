@@ -1,0 +1,71 @@
+<mat-nav-list>
+  <div class="main">
+    <div class="left">
+      <a class="white" mat-list-item routerLink="/" (click)="onSidenavClose()">
+        <mat-icon class="phone"> phone_iphone </mat-icon>
+        <span class="nav-caption"> 6060 </span>
+      </a>
+    </div>
+
+    <div class="left mt-2">
+      <a
+        routerLink="/login"
+        class="nav-caption border"
+        (click)="onSidenavClose()"
+      >
+        <small class="inWhite"> Daxil ol </small>
+        <mat-icon class="login"> login </mat-icon>
+      </a>
+    </div>
+
+    <div class="right mt-2" mat-list-item (click)="onSidenavClose()">
+      <mat-icon class="cross"> clear </mat-icon>
+    </div>
+  </div>
+
+  <a mat-list-item routerLink="/" (click)="onSidenavClose()">
+    <mat-icon> home </mat-icon><span class="nav-caption"> Əsas Seyfe </span>
+  </a>
+
+  <a mat-list-item routerLink="/" (click)="onSidenavClose()">
+    <mat-icon> assignment_ind </mat-icon>
+    <span class="nav-caption"> Məhsul </span>
+  </a>
+
+  <a mat-list-item routerLink="/card" (click)="onSidenavClose()">
+    <mat-icon> shopping_cart</mat-icon><span class="nav-caption"> Sebet </span>
+  </a>
+
+  <a mat-list-item routerLink="/contact" (click)="onSidenavClose()">
+    <mat-icon> place </mat-icon><span class="nav-caption"> Mağazalar </span>
+  </a>
+
+  <a mat-list-item routerLink="/services" (click)="onSidenavClose()">
+    <mat-icon> location_on </mat-icon>
+    <span class="nav-caption"> Servislər </span>
+  </a>
+
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon> menu </mat-icon>
+        <span class="nav-caption"> Butun kateqoriyalar</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list (click)="onSidenavClose()">
+      <mat-list-item (click)="changeCategory()">
+        Tum Kategoriler
+      </mat-list-item>
+      <mat-list-item
+        *ngFor="let category of categories"
+        (click)="changeCategory(category)"
+        [class.active]="category === selectedCategory"
+      >
+        {{ category.name }}
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-nav-list>

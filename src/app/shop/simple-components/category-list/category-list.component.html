@@ -1,0 +1,18 @@
+<div class="list-group" >
+  <button   (click)="changeCategory()"  class="list-group-item list-group-item-action">
+    Tum Kategoriler
+  </button>
+
+  <button *ngIf="categories.length ===0 " class="btn btn-primary" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    Yüklənir...
+  </button>
+  <div *ngIf="categories.length>0 ">
+    <button *ngFor="let category of categories"
+      (click)="changeCategory(category)"
+      class="list-group-item list-group-item-action"
+      [class.active]="category===selectedCategory">
+    {{ category.name }}
+  </button>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+.navbar {
+  background: #ff003c;
+}
+
+a {
+  text-decoration: none;
+  color:#fff;
+}
+
+a:hover ,a:active {
+  color: lightgray;
+}
+
+.navigation-items {
+  padding: 0;
+  margin: 0;
+}
+.navigation-items li{
+  list-style: none;
+}
+mat-toolbar {
+  border-radius: 3px;
+}
+ul li {
+  font-size: 14px;
+}
+.login{
+  margin-top: -12px;
+}
+@media(max-width: 959px){
+  mat-toolbar {
+    border-radius: 0px;
+  }
+}

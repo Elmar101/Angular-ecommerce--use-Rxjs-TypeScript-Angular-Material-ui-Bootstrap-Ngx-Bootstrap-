@@ -1,0 +1,99 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import '@angular/material/prebuilt-themes/indigo-pink.css'; */
+@import  '~alertifyjs/build/css/alertify.min.css';
+@import  '~alertifyjs/build/css/themes/bootstrap.min.css';
+html, body { height: 100%; margin: 0;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+.pt-100 {
+  padding-top: 20px;
+}
+/*
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+
+
+html {
+  font-size: 85%;
+  box-sizing: border-box;
+}
+
+body,input {
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-family: 'Archivo','sans-serif';
+  color: var(--black);
+}
+
+a {
+  text-decoration: none;
+} */
+
+/* img {
+  max-width: 100%;
+}
+
+h3,h4 {
+  font-weight: 500;
+}
+
+.header {
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: 117rem;
+  margin: 0 auto;
+  //padding: 0 1.6rem;
+}
+
+.navigation {
+  position: relative;
+  height: 7rem;
+  box-shadow: 0.5rem 1.5rem rgba(0,0,0, .1);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 7rem;
+  width: 100%;
+  padding: 0 1rem;
+}
+ */

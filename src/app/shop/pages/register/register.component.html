@@ -1,0 +1,68 @@
+<bread-crumb></bread-crumb>
+
+<main>
+  <div class="d-flex justify-content-end">
+    <a class="mb-3 text-dark">Artıq üzvsünüz?</a>
+  </div>
+  <hr style="width: 100%;"/>
+
+  <form  class="form-signin" #form="ngForm" (ngSubmit)="submitUser(form)">
+    <div class="">
+      <label> İstifadəçi adı <small>*</small></label>
+      <input type="text"  class="form-control"
+              placeholder="İstifadəçi adı*"
+              required
+              name="name"
+              #name="ngModel"
+              [(ngModel)]="authorizationService.authorization.name"/>
+
+      <span *ngIf="submitted && name.invalid" class="text-danger">
+        Zəhmət olmazsa adınızı daxil edin
+      </span>
+    </div>
+
+    <div class="mt-2">
+      <label> E-Ünvan <small>*</small></label>
+      <input type="email" class="form-control" placeholder="Email address" required
+              placeholder="Email*"
+              required
+              pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+              class="form-control"
+              name="email"
+              #email="ngModel"
+              [(ngModel)]="authorizationService.authorization.email"/>
+
+      <span *ngIf="submitted && email.invalid" class="text-danger">
+        <p *ngIf="name.errors!.required">Zəhmət olmazsa email daxil edin</p>
+        <p *ngIf="name.errors!.pattern">
+          Zəhmət olmazsa email adressinizi doqru yazin
+        </p>
+      </span>
+    </div>
+
+    <div class="mt-2">
+      <label>Şifrə <small>*</small></label>
+      <input type="password" class="form-control" placeholder="Şifrə" required minlength="8"
+             name="password"
+             #password="ngModel"
+             [(ngModel)]="authorizationService.authorization.password"/>
+      <span *ngIf="submitted && password.invalid" class="text-danger">
+          Zəhmət olmazsa Passwordunuzu yazin
+      </span>
+    </div>
+
+    <div class="checkbox mt-2">
+      <label class="text-muted">
+        <input type="checkbox">
+        Qeydiyyatdan keçməklə saytdan istifadə qaydalarını qəbul edirəm
+      </label>
+    </div>
+
+    <div class="text-center mt-2">
+      <button class="btn btn-primary " type="submit">Qeydiyat</button>
+      <button class="btn btn-secondary  ml-2" type="button" routerLink="/login">Daxil Ol</button>
+    </div>
+
+  </form>
+</main>
+

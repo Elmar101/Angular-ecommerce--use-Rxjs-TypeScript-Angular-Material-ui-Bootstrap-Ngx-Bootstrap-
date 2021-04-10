@@ -1,0 +1,110 @@
+<div *ngIf="orderSent" class="m-2 text-center">
+  <h2>Təşəkkür Edəriz</h2>
+  <p>Sifarişiniz Qeydə Alindi</p>
+  <button routerLink="/shop" class="btn btn-primary">
+    Alışverişə Dəvam Et
+  </button>
+</div>
+
+<form
+  *ngIf="!orderSent"
+  #form="ngForm"
+  (ngSubmit)="submitOrder(form)"
+  class="m-4"
+>
+  <div class="form-group">
+    <label> Ad </label>
+    <input
+      class="form-control"
+      placeholder="name"
+      required
+      name="name"
+      #name="ngModel"
+      [(ngModel)]="orderService.order.name"
+    />
+    <span *ngIf="submitted && name.invalid" class="text-danger">
+      Zəhmət olmazsa adınızı daxil edin
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label> Ünvan </label>
+    <input
+      class="form-control"
+      placeholder="adress"
+      required
+      name="adress"
+      #adress="ngModel"
+      [(ngModel)]="orderService.order.adress"
+    />
+    <span *ngIf="submitted && adress.invalid" class="text-danger">
+      Zəhmət olmazsa adress daxil edin
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label> Şəhər </label>
+    <input
+      class="form-control"
+      placeholder="city"
+      required
+      name="city"
+      #city="ngModel"
+      [(ngModel)]="orderService.order.city"
+    />
+    <span *ngIf="submitted && city.invalid" class="text-danger">
+      Zəhmət olmazsa Şəhər daxil edin
+    </span>
+  </div>
+
+  <div class="form-group">
+    <mat-label> Telefon </mat-label>
+    <input
+      class="form-control"
+      placeholder="phone*"
+      required
+      minlength="10"
+      pattern="[0-9][0-9]{9}"
+      name="phone"
+      #phone="ngModel"
+      [(ngModel)]="orderService.order.phone"
+    />
+    <span *ngIf="submitted && phone.invalid" class="text-danger">
+      Zəhmət olmazsa Telfon Nömresini daxil edin
+    </span>
+  </div>
+
+  <div class="form-group">
+    <mat-label>  E-Ünvan </mat-label>
+    <input
+      class="form-control"
+      placeholder="E-Ünvan*"
+      required
+      pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+      class="form-control"
+      name="email"
+      #email="ngModel"
+      [(ngModel)]="orderService.order.email"
+    />
+
+    <span *ngIf="submitted && email.invalid" class="text-danger">
+      <p *ngIf="name.errors!.required">Zəhmət olmazsa email daxil edin</p>
+      <p *ngIf="name.errors!.pattern">
+        Zəhmət olmazsa email adressinizi doqru yazin
+      </p>
+    </span>
+  </div>
+  <div class="text-center">
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="submitted && email.invalid"
+      [class.btn-secondary]="submitted && email.invalid"
+    >
+      Sifarişi Bitir
+    </button>
+    <button routerLink="/" class="btn btn-primary ml-2" type="submit">
+      Alişverişə Davam Et
+    </button>
+  </div>
+</form>

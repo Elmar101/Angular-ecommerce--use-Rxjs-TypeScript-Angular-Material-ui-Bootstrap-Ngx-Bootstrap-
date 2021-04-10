@@ -1,0 +1,23 @@
+
+.position-relative{
+  position: relative;
+}
+.position-absolute{
+  bottom: 0;
+  display: block;
+  padding-bottom: 0;
+}
+.imgR{
+  max-width: 80px;
+  object-fit: cover;
+}
+@media(max-width: 992px){
+  .mt-100{
+    margin-top: 50px;
+  }
+}
+
+@media(max-width: 492px){
+  .pt-25{ padding-top: 25px;}
+}
+

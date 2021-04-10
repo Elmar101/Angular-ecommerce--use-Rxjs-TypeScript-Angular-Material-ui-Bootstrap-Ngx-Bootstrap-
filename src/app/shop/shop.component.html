@@ -1,0 +1,32 @@
+
+  <mat-sidenav-container>
+
+    <mat-sidenav #sidenav role="navigation">
+      <sidenav-list (SidenavClose)="sidenav.close()"></sidenav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <div class="p-2">
+        <shop-navbar (sidenavToggle)="sidenav.toggle()"></shop-navbar>
+      </div>
+
+      <main class="container-lg pt-100 mb-5 container-fluid">
+        <router-outlet></router-outlet>
+      </main>
+
+      <footer></footer>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+<div class="alert alert-success fs-sm-6 fs-5">
+
+  <img src="assets/themes/images/ico-cart.png"/>
+  <span
+  *ngIf=" cartService.itemCount >0 ">
+    Səbətde {{ cartService.itemCount }} ədət məhsul var. <br/>
+    <!-- bura elave olunan mehsulun bilgilerinide qeyd edecem -->
+    Cəmi {{ cartService.totalPrice }} AZN
+  </span>
+
+  <span *ngIf="cartService.itemCount == 0">
+    Səbətinizdə məhsul yoxdur.
+  </span>
+
+</div>

@@ -1,0 +1,190 @@
+<div class="contact">
+  <div class="container-fluid">
+    <div class="mb-2 fs-6">
+      <bread-crumb></bread-crumb>
+    </div>
+      <div class="row">
+          <div class="col-lg-4 col-md-4 mb-5">
+
+                <div class="contact-info">
+
+                  <h2>Bizim Maqaza</h2>
+
+                  <div class="contact-info">
+                    <ul>
+                      <li class="">
+                        <a href="" class="col-md-6 mb-3">
+                          <i class="fas fa-mobile-alt"></i> <span>*6060</span>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="" class="col-md-6">
+                          <i class="fa fa-map-marker"></i
+                          ><span>Mağazalarımız xəritədə</span>
+                        </a>
+                      </li>
+
+                      <li>
+                       <i class="fa fa-phone" style="margin-right: 15px;"></i>
+                       <a type="button"> Mənə zəng et  </a><!-- (click)="addContact()"-->
+                      </li>
+
+                    </ul>
+
+                    <ul class="social">
+                      <li>
+                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                      </li>
+                      <li>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                      </li>
+                      <li>
+                        <a href=""><i class="fab fa-youtube"></i></a>
+                      </li>
+                    </ul>
+
+                  </div>
+
+
+              </div>
+          </div>
+          <div class="col-lg-6 offset-lg-2 col-md-8 mt-4">
+              <div class="contact-form">
+                  <form #form="ngForm" (ngSubmit)="saveMessages(form)">
+                      <div class="row">
+                          <div class="col-md-6 mb-2">
+                              <input type="text" class="form-control" placeholder="Adiniz"
+                                      required
+                                      name="name"
+                                      #name="ngModel"
+                                      [(ngModel)]="commentService.comment.name"
+                              />
+
+                              <span *ngIf="submitted && name.invalid" class="text-danger">
+                                Zəhmət olmazsa adınızı daxil edin
+                              </span>
+                          </div>
+                          <div class="col-md-6">
+                              <input type="email" class="form-control" placeholder="E-Ünvan"
+                                    required
+                                    pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                                    name="email"
+                                    #email="ngModel"
+                                    [(ngModel)]="commentService.comment.email"
+                              />
+
+                              <span *ngIf="submitted && email.invalid" class="text-danger">
+                                <p *ngIf="name.errors!.required">Zəhmət olmazsa email daxil edin</p>
+                                <p *ngIf="name.errors!.pattern">
+                                  Zəhmət olmazsa email adressinizi doqru yazin
+                                </p>
+                              </span>
+                          </div>
+                      </div>
+                      <div class="form-group my-2">
+                          <input type="text" class="form-control" placeholder="Mövzu" />
+                      </div>
+                      <div class="form-group">
+                          <textarea class="form-control" rows="5" placeholder="Message"
+                                    required
+                                    name="text" #text="ngModel"
+                                    [(ngModel)]=" commentService.comment.text"></textarea>
+
+                          <span *ngIf="submitted && name.invalid" class="text-danger">
+                            Zəhmət olmazsa Messajinizi yazin
+                          </span>
+                      </div>
+                      <div><button class="btn btn-primary" type="submit">Message Göndərin</button></div>
+                  </form>
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="contact-map my-4">
+                <iframe src="https://www.google.com/maps/d/embed?mid=1Wav8yp4qpTQXzx3Oyl5u3sAeYLX-Y7XX"></iframe>
+              </div>
+          </div>
+
+
+      </div>
+
+      <h1>Bakı şəhəri</h1>
+      <div class="row" *ngFor="let service of serviceRepozitory.services">
+        <div class="col-md-6 col-12">
+
+          <h3>{{service.titleB1}}</h3>
+          <p>{{ service.placeB1}}</p>
+
+          <h3>{{service.titleB2}}</h3>
+          <p>{{ service.placeB2}}</p>
+
+          <h3>{{service.titleB3}}</h3>
+          <p>{{ service.placeB3}}</p>
+
+          <h3>{{service.titleB4}}</h3>
+          <p>{{ service.placeB4}}</p>
+
+          <h3>{{service.titleB5}}</h3>
+          <p>{{ service.placeB5}}</p>
+
+          <h3>{{service.titleB6}}</h3>
+          <p>{{ service.placeB6}}</p>
+
+          <h3>{{service.titleB7}}</h3>
+          <p>{{ service.placeB7}}</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <h3>{{service.titleB8}}</h3>
+          <p>{{ service.placeB8}}</p>
+
+          <h3>{{service.titleB9}}</h3>
+          <p>{{ service.placeB9}}</p>
+
+          <h3>{{service.titleB10}}</h3>
+          <p>{{ service.placeB10}}</p>
+
+          <h3>{{service.titleB11}}</h3>
+          <p>{{ service.placeB11}}</p>
+
+          <h3>{{service.titleB12}}</h3>
+          <p>{{ service.placeB12}}</p>
+
+          <h3>{{service.titleB13}}</h3>
+          <p>{{ service.placeB13}}</p>
+
+          <h3>{{service.titleB14}}</h3>
+          <p>{{ service.placeB14}}</p>
+        </div>
+        <h1 class="col-12 pt-100">Regionlar</h1>
+
+        <div class="col-md-6 col-12">
+
+          <h3>{{service.titleR1}}</h3>
+          <p>{{ service.placeR1}}</p>
+
+          <h3>{{service.titleR2}}</h3>
+          <p>{{ service.placeB2}}</p>
+
+          <h3>{{service.titleR3}}</h3>
+          <p>{{ service.placeR3}}</p>
+
+        </div>
+        <div class="col-md-6 col-12">
+          <h3>{{service.titleR4}}</h3>
+          <p>{{ service.placeR4}}</p>
+
+          <h3>{{service.titleR5}}</h3>
+          <p>{{ service.placeR5}}</p>
+
+          <h3>{{service.titleR6}}</h3>
+          <p>{{ service.placeR6}}</p>
+
+        </div>
+      </div>
+  </div>
+
+
+</div>
+
+
+<!-- Contact End -->

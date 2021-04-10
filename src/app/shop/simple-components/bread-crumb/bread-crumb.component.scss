@@ -1,0 +1,13 @@
+.dimention{
+  flex: 1 1 auto;
+}
+
+mat-toolbar{
+  width: 100%;
+}
+
+@media(max-width:750px){
+  .mat-toolbar-row,.mat-toolbar-single-row{
+    font-size: 10px!important;
+  }
+}

@@ -1,0 +1,369 @@
+<h1 class="mb-2">Alışveriş Səbətiniz</h1>
+<div class="row">
+  <div class="col-lg-3 col-12 mb-5">
+    <!-- Cart Sebet hissesi -->
+    <cart-summary></cart-summary>
+    <!--category list -->
+    <category-list (category)="getCategory($event)"> </category-list>
+  </div>
+
+  <div class="col-lg-9 col-12">
+    <div class="row">
+      <div class="col-12">
+        <div class="mb-2 fs-6">
+          <bread-crumb></bread-crumb>
+        </div>
+
+        <ng-container>
+          <div class="row">
+            <div class="col-md-3 col-12 ml">
+              <img
+                src="assets/img/{{ imageUrl }}"
+                class="imageUrl"
+              />
+            </div>
+            <div class="col-md-9 col-12">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <td class="f-10">{{ price }} AZN</td>
+                    <td>
+                      <input
+                        type="text"
+                        #quantity
+                        class="form-control text-center"
+                        style="width: 100px"
+                        placeholder="Miqdar."
+                        [(ngModel)]="productCount"
+                        (input)="updateQuantity(product, quantity.value)"
+                      />
+                      <!-- [formControl]="productCount"-->
+                    </td>
+                    <td>
+                      <button
+                        type="submit"
+                        class="btn btn-primary f-10 pull-right"
+                        (click)="addToCart(product, quantity.value)"
+                      >
+                        <!--(click)="removeItem(item.id)"-->
+                        Sebete Əlavə et
+                        <i class="fas fa-shopping-cart"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <hr />
+              <div class="mtSelect">
+                <p>
+                  <u>{{ productName }} </u> Mehsulundan {{ count }} qeder var !
+                </p>
+                <h3 class="color">Mehsulun Rəngi</h3>
+                <mat-form-field *ngIf="colors">
+                  <mat-select disableRipple [(value)]="selected"
+                    >
+                    <mat-option value="color" selected
+                      >--Rəng Seçin--</mat-option
+                    >
+                    <mat-option [value]="color" *ngFor="let color of colors">
+                      {{ color }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <hr />
+              <div class="p-2">
+                <h4>{{ productName }} {{ category }}</h4>
+                <p>{{ about }}</p>
+              </div>
+              <hr />
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- <ng-container *ngIf="itemCount ==0 ">
+              <div class="alert alert-warning mt-3">
+                Səbətinizdə Məhsul yox <br/>
+                <button  mat-flat-button routerLink='/shop'  class="btn btn-link p-0">
+                  Alışveriş devam etmək  üçün klik edinş
+                </button>
+              </div>
+              </ng-container> -->
+      </div>
+    </div>
+
+    <ul class="nav nav-tabs justify-content-end">
+      <li class="nav-item b-radius-l">
+        <a
+          href="#productDetails"
+          class="nav-link active text-dark"
+          role="tab"
+          data-toggle="tab"
+          aria-controls="productDetails"
+          aria-selected="true"
+        >
+          Xüsusiyyətlər
+        </a>
+      </li>
+      <li class="nav-item b-radius-r">
+        <a
+          href="#relatedProducts"
+          class="nav-link text-dark"
+          role="tab"
+          data-toggle="tab"
+          aria-controls="relatedProducts"
+          aria-selected="false"
+        >
+          İstifadəçi rəyləri
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div
+        role="tabpanel"
+        class="tab-pane active fade show shadow border-ul"
+        id="productDetails"
+      >
+        <table class="table table-striped">
+          <tbody *ngIf="productInformation">
+            <tr class="table-bg-g" *ngIf="productInformation.producer">
+              <td>İstehsalçı</td>
+              <td>{{ productInformation.producer }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.model">
+              <td>Prosessor</td>
+              <td>{{ productInformation.model }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.procesorCode">
+              <td>Prosessorun kodu</td>
+              <td>{{ productInformation.procesorCode }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.tactileFrequency">
+              <td>Takt tezliyi</td>
+              <td>{{ productInformation.tactileFrequency }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.diagnolSicreen">
+              <td>Ekranın diaqonalı</td>
+              <td>{{ productInformation.diagnolSicreen }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.ram">
+              <td>Operativ yaddaş</td>
+              <td>{{ productInformation.ram }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.ssd">
+              <td>SSD</td>
+              <td>{{productInformation.ssd}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.videoCartType">
+              <td>Video kartının növü</td>
+              <td>{{productInformation.videoCartType}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.chipVideCart">
+              <td>Videokartın çipseti</td>
+              <td>{{productInformation.chipVideCart}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.capacityVideoCart">
+              <td>Video kartının həcmi</td>
+              <td>{{productInformation.capacityVideoCart}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.operationSystem">
+              <td>Əməliyyat sistemi</td>
+              <td>{{productInformation.operationSystem}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.hdmi">
+              <td>HDMI</td>
+              <td>{{productInformation.hdmi}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.color">
+              <td>Rəngi</td>
+              <td>{{productInformation.color}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.optikDrive">
+              <td>Optik drive</td>
+              <td>{{productInformation.optikDrive}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.resolutionOn">
+              <td>Istehsal ili</td>
+              <td>{{ productInformation.resolutionOn }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.type">
+              <td>Növ</td>
+              <td>{{ productInformation.type }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.monitor">
+              <td>Ekran</td>
+              <td>{{ productInformation.monitor }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.resolution">
+              <td>Resolution</td>
+              <td>{{ productInformation.resolution }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.camera">
+              <td>Əsas kamera</td>
+              <td>{{ productInformation.camera }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.frontCamera">
+              <td>Ön kamera</td>
+              <td>{{ productInformation.frontCamera }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.wiFi">
+              <td>Wi Fi</td>
+              <td>{{ productInformation.wiFi }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.nfs">
+              <td>NFC</td>
+              <td>{{ productInformation.nfs }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.memory">
+              <td>Daxili yaddaş</td>
+              <td>{{ productInformation.memory }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.prosessor">
+              <td>Prosessor</td>
+              <td>{{ productInformation.prosessor }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.operationalMemory">
+              <td>Operativ Yaddaş</td>
+              <td>{{ productInformation.operationalMemory }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.battery">
+              <td>Batareya</td>
+              <td>{{ productInformation.battery }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.weight">
+              <td>Çəkisi</td>
+              <td>{{ productInformation.weight }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.size">
+              <td>Ölçüləri</td>
+              <td>{{ productInformation.size }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.operatingSystem">
+              <td>Əməliyyat sistemi</td>
+              <td>{{ productInformation.operatingSystem }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.bodyMaterial">
+              <td>Korpusun Materialı</td>
+              <td>{{ productInformation.bodyMaterial }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.bluetooth">
+              <td>Bluetooth</td>
+              <td>{{ productInformation.bluetooth }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.screenshot">
+              <td>Ekran görüntüsü</td>
+              <td>{{ productInformation.screenshot }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.gps">
+              <td>GPS</td>
+              <td>{{ productInformation.gps }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.screenshot">
+              <td>Nüvə sayı</td>
+              <td>{{ productInformation.screenshot }}</td>
+            </tr>
+
+            <tr class="table-bg-f" *ngIf="productInformation.fastEnergyStorage">
+              <td>Sürətli enerji yığma</td>
+              <td>{{ productInformation.fastEnergyStorage }}</td>
+            </tr>
+
+            <tr class="table-bg-g" *ngIf="productInformation.guarantee">
+              <td>Zəmanət</td>
+              <td>{{ productInformation.guarantee }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div
+        role="tabpanel"
+        class="tab-pane fade shadow border-ul"
+        id="relatedProducts"
+      >
+        <h1 class="p-3 m-4"> Rəy yaz </h1>
+
+        <form class="row m-4 p-2" #form="ngForm" (ngSubmit)="saveComment(form)">
+
+          <div class="col-md-6 form-group">
+            <label for="name"> Adınız <small> * </small> </label>
+            <input type="text"  class="form-control form-control-lg" required name="name" #name="ngModel"
+                  [(ngModel)]="commentService.comment.name "/>
+
+            <span *ngIf="submitted && name.invalid" class="text-danger">
+              Zəhmət olmazsa adınızı daxil edin
+            </span>
+          </div>
+
+          <div class="col-md-6 form-group">
+            <label> E-poçt <small> * </small> </label>
+            <input type="text" class="form-control form-control-lg" required
+                     pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                     name="email" #email="ngModel"
+                     [(ngModel)]=" commentService.comment.email"/>
+
+            <span *ngIf="submitted && email.invalid" class="text-danger">
+              <p *ngIf="name.errors!.required">Zəhmət olmazsa email daxil edin</p>
+              <p *ngIf="name.errors!.pattern">
+                Zəhmət olmazsa email adressinizi doqru yazin
+              </p>
+            </span>
+
+          </div>
+
+          <div class="mb-3 col-12 form-group">
+            <label>Rəyiniz <small> * </small></label>
+            <textarea id="validationTextarea"  rows="7" class="form-control form-control-lg"
+                      required  minlength="7"
+                      name="comment" #comment="ngModel"
+                      [(ngModel)]=" commentService.comment.comment"></textarea>
+            <span *ngIf="submitted && name.invalid" class="text-danger">
+              Zəhmət olmazsa Rəyinizi yazin
+            </span>
+          </div>
+
+          <div class="d-grid gap-2 d-flex justify-content-end col-12">
+            <button class="btn btn-light" type="submit"> Göndər </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

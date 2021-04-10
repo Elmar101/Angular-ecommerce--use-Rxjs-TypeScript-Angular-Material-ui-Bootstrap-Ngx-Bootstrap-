@@ -1,0 +1,43 @@
+<bread-crumb></bread-crumb>
+<div class="bg-danger m-4 p-3 text-center text-white" *ngIf="errorMessage!=null">
+  {{errorMessage}}
+</div>
+
+<main>
+  <div class="d-flex justify-content-end">
+    <a class="mb-3 text-dark">Şifrənizi Unutdunuz?</a>
+  </div>
+  <hr style="width: 100%;"/>
+  <form  class="form-signin" #form="ngForm" (ngSubmit)="login(form)">
+    <div>
+      <label >İstifadəçi adı  <small>*</small></label>
+       <input type="text" class="form-control"
+              name="userName"  [(ngModel)] = "userName" required/>
+
+        <span *ngIf="submitted" class="text-danger">
+          Zəhmət olmazsa adınızı daxil edin
+        </span>
+    </div>
+
+    <div>
+      <label> Şifrə <small>*</small> </label>
+       <input type="password" id="inputPassword" class="form-control"
+              name="password" [(ngModel)] = "password" required/>
+
+        <span *ngIf="submitted" class="text-danger">
+          Zəhmət olmazsa Passwordunuzu yazin
+        </span>
+    </div>
+
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> MƏNİ YADDA SAXLA
+      </label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="form.invalid">Daxil Ol</button>
+    <button class="w-100 btn btn-lg btn-secondary mt-3" type="button" routerLink="/register">Hesab Yarat</button>
+
+  </form>
+</main>

@@ -1,0 +1,84 @@
+
+<div class="row border m-0 p-3 mb-4" *ngIf="selectedProduct">
+
+  <div class="col-sm-5">
+    <img class="img-fluid" src="assets/img/{{selectedProduct?.imageUrl}}"/>
+  </div>
+
+  <div class="col-sm-7 mt-25">
+
+    <h3 class="cart-title font-weight-bold">
+      {{ selectedProduct?.name }}
+    </h3>
+
+    <p class="cart-text">
+      {{ selectedProduct?.description }}
+    </p>
+
+    <button (click)="hideDetails()" class="btn btn-danger btn-sm">
+      Seçimi iptal et
+    </button>
+
+    <button (click)="addProductToCart(selectedProduct)" class="btn-primary btn-sm ml-3">
+      Sebete Elave Et
+    </button>
+
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div  *ngFor="let product of products"
+        fxFlex="33"
+        fxFlex.md="33"
+        fxFlex.sm="50"
+        fxFlex.xs="100"
+        fxLayout="column"
+        style="padding: 5px;"
+  >
+
+    <mat-card class="card mb-3" (click)="cartfullDetail(product.id)">
+
+      <div class="p-cart">
+        <img mat-card-image src="assets/img/{{product.imageUrl}}" />
+
+        <mat-card-actions>
+          <button mat-raised-button type="button" color="primary" (click)="addProductToCart(product)">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+          <button mat-raised-button routerLink='/cartFullDetail/{{product.id}}' type="button"  color="primary">View</button>
+        </mat-card-actions>
+
+      </div>
+
+      <mat-card-content>
+        <h4 class="cart-title">
+          <a href=""> {{product.name}} </a>
+        </h4>
+
+        <small class="text-muted">
+          {{ product.price | currency: "AZN":"symbol":"1.2-2":"az-Azn"}}
+        </small>
+      </mat-card-content>
+
+
+    </mat-card>
+
+    <div class="card-footer text-center ">
+
+      <button
+        class="btn-outline-primary btn-sm"
+        (click)="displayDetails(product)">
+        Details
+     </button>
+
+      <button (click)="addProductToCart(product)" class="btn-outline-primary btn-sm ml-2">
+        Sebete Elave Et
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

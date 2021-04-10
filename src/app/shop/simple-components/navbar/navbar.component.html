@@ -1,0 +1,53 @@
+<mat-toolbar color="primary">
+  <div fxHide.gt-sm>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon> menu </mat-icon>
+    </button>
+  </div>
+
+<div class="container">
+  <div>
+    <a href="" class="navbar-brand"> ShopApp </a>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs >
+    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+      <li >
+        <a routerLink="/" > Əsas Seyfe</a>
+      </li>
+      <li >
+        <a routerLink="/product" > Məhsul</a>
+      </li>
+      <li >
+        <a routerLink="/card" >Sebet </a>
+      </li>
+      <li >
+        <a routerLink="/contact" > Mağazalar </a>
+      </li>
+      <li >
+        <a routerLink="/services" >Servislər</a>
+      </li>
+
+      <li>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="login">
+          <mat-icon>login</mat-icon>
+          <span>Daxil Ol</span>
+        </button>
+
+        <mat-menu #menu="matMenu" >
+          <button mat-menu-item routerLink="/login">
+            <mat-icon>login</mat-icon>
+            <span>Daxil Ol</span>
+          </button>
+          <button mat-menu-item routerLink="/register">
+            <mat-icon>how_to_reg</mat-icon>
+            <span>Qeydiyat</span>
+          </button>
+        </mat-menu>
+      </li>
+    </ul>
+  </div>
+</div>
+</mat-toolbar>
+
+
+

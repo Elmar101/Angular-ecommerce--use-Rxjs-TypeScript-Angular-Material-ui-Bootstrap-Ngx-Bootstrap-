@@ -1,0 +1,89 @@
+
+
+      <bread-crumb></bread-crumb>
+        <h1 class="mb-2 pt-100"> Alışveriş Səbətiniz </h1>
+        <div class="row">
+          <div class="col-lg-8 col-md-12">
+
+            <ng-container *ngIf="itemCount >0 ">
+
+              <div class="row" *ngFor="let item of items">
+                <div class="col-4">
+                  <h2></h2>
+                  <img src="assets/img/{{item.product.imageUrl}}" class="imgR">
+                </div>
+
+                <div class="col-4">
+                  <h2>Məhsul</h2>
+                  <p>{{item.product.name}}</p>
+                </div>
+
+                <div class="col-4">
+                  <h2>Qiymət</h2>
+                  <p>{{item.product.price}} AZN</p>
+                </div>
+
+                <div class="col-4 mt-5 ">
+                  <h2> Miqdar </h2>
+                  <p class="position-relative pt-25">
+                    <input type="text" #quantity class="position-absolute"
+                    class="form-control"
+                    style="width: 50px;"
+                    [value]="item.quantity"
+                    (input)="updateQuantity(item.product,quantity.value)"/>
+                  </p>
+                </div>
+
+                <div class="col-4  mt-5">
+                  <h2> Toplam Qiymət </h2>
+                  <p>{{ totalPrice(item.product.price,item.quantity) }} AZN </p>
+                </div>
+
+                <div class="col-4  mt-5">
+                  <h2> Sebetden sil </h2>
+                  <p >
+                    <button class="btn btn-danger btn-sm " (click)="removeItem(item.product.id)">
+                      <i class="fa fa-times fa-fw "></i>
+                    </button>
+                  </p>
+                </div>
+
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="itemCount == 0 ">
+              <div class="alert alert-warning mt-3">
+                Səbətinizdə Məhsul yox <br/>
+                <button  mat-flat-button routerLink='/'  class="btn btn-link p-0">
+                  Alışveriş devam etmək  üçün klik edin
+                </button>
+              </div>
+            </ng-container>
+
+          </div>
+          <div class="col-lg-4 col-md-12 mt-100">
+            <ng-container *ngIf="itemCount>0 ">
+              <div class="text-left">
+                <h4>Alişveriş Ozeti</h4>
+              </div>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th> Cemi </th>
+                    <td>{{ cartServiceTotalPrice | currency: "AZN":"symbol":"1.2-2":"az-Azn"}} </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div>
+                <button routerLink="/" class="btn btn-primary btn-sm">
+                  Alışverişə Davam Et
+                </button>
+                <button routerLink="/checkout" class="btn btn-primary btn-sm ml-2">
+                  Alışverişi Bitir
+                </button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+

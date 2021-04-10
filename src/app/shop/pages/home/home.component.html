@@ -1,0 +1,73 @@
+<div class="container-lg pt-100 mb-5 container-fluid">
+  <div class="row">
+    <section class="col-lg-3 col-12 mb-5">
+      <cart-summary></cart-summary>
+
+      <category-list (category)="getCategory($event)"> </category-list>
+    </section>
+
+    <section class="col-lg-9 col-12">
+      <div class="row">
+        <div class="col-12">
+          <bread-crumb></bread-crumb>
+          <div class="d-flex bd-highlight my-3">
+            <div class="flex-grow-1 bd-highlight">
+              <div class="form-inline">
+                <select
+                  class="form-control-sm"
+                  [value]="productsPerPage"
+                  #select
+                >
+                  <option value="2">2 eded</option>
+                  <option value="3">3 eded</option>
+                  <option value="4">--Seç--</option>
+                  <option value="6">6 eded</option>
+                  <option value="8">8 eded</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="bd-highlight">
+              <div class="form-inline">
+                <input
+                  type="text"
+                  class="form-control w-100"
+                  placeholder="search"
+                  #search
+                />
+              </div>
+            </div>
+
+            <div class="bd-highlight align-self-sm-center">
+              <div class="form-inline">
+                <button class="btn btn-outline-primary"(click)="filterName(search.value)">Search</button>
+                <!--  <button class="btn btn-outline-success ml-3 ">Reset</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <product-list [products]="products"></product-list>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="btn-group">
+            <button
+              class="btn btn-outline-primary"
+              *ngFor="let page of pageNumbers"
+              (click)="changePage(page)"
+              [class.active]="page == selectedPage"
+            >
+              {{ page }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

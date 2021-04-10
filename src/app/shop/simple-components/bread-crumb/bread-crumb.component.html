@@ -1,0 +1,15 @@
+<mat-toolbar *ngIf="(breadcrumbs$ | async) as breadcrumbs">
+  <ng-container
+  *ngIf="breadcrumbs.length>0 && breadcrumbs[breadcrumbs.length-1].label !=='Shop'">
+      <span>
+        {{breadcrumbs.length>0 && breadcrumbs[breadcrumbs.length-1].label | titlecase}}
+      </span>
+      <span class="dimention"></span>
+      <span>
+        <xng-breadcrumb></xng-breadcrumb>
+      </span>
+  </ng-container>
+</mat-toolbar>
+
+
+
